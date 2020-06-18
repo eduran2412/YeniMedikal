@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="273.0" style="-fx-background-color: #80b3b3;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="app.OrtopedikDuzenleController">
+   <children>
+      <Label layoutX="40.0" layoutY="53.0" text="id:" />
+      <Label layoutX="32.0" layoutY="89.0" text=" isim:" />
+      <Label layoutX="33.0" layoutY="126.0" text="adet:" />
+      <Label layoutX="33.0" layoutY="161.0" text="fiyat:" />
+      <ComboBox fx:id="cmbTur" layoutX="69.0" layoutY="193.0" prefWidth="150.0" />
+      <Label layoutX="37.0" layoutY="193.0" text="tür:" />
+      <TextField fx:id="txtId" layoutX="69.0" layoutY="49.0" />
+      <TextField fx:id="txtIsim" layoutX="69.0" layoutY="85.0" />
+      <TextField fx:id="txtAdet" layoutX="69.0" layoutY="122.0" />
+      <TextField fx:id="txtFiyat" layoutX="69.0" layoutY="157.0" />
+      <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" onAction="#ortopedikDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
+      <Button layoutX="161.0" layoutY="242.0" mnemonicParsing="false" onAction="#ortopedikDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+   </children>
+</AnchorPane>
