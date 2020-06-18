@@ -20,4 +20,6 @@ public class Boyunluk extends Ortopedik{
         return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
     }
     
+    
+    
 }
