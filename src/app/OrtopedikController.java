@@ -84,7 +84,7 @@ public class OrtopedikController implements Initializable {
             ortopedikList.add(st);
             DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
         } else {
-            Ortopedik kd = new KoltukDegnegi(id, isim, fiyat, adet, tur);
+            Ortopedik kd = new KoltukDegnegi(id, isim, fiyat, adet, "Ortopedik");
             ortopedikList.add(kd);
             DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
         }

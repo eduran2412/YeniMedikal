@@ -1,5 +1,10 @@
 package model;
 
+import java.io.BufferedReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import util.DosyaIslemleri;
+
 public class MedikalKimyasal extends Malzeme {
 
     private String tur;
@@ -20,6 +25,24 @@ public class MedikalKimyasal extends Malzeme {
     @Override
     public String toString() {
         return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
+    }
+    
+    public static ObservableList<MedikalKimyasal> dosyadanMedikalTekstilGetir(){
+         ObservableList<MedikalKimyasal> geciciListe = FXCollections.observableArrayList();
+         try {
+            BufferedReader br = DosyaIslemleri.dosyayiCagir("medikalkimyasal");
+            String line;
+            String[] satir;
+            while ((line = br.readLine()) != null) {
+                satir = line.split("\t");
+                MedikalKimyasal mt = new MedikalKimyasal(Integer.parseInt(satir[0]), satir[1],Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
+                geciciListe.add(mt);
+            }
+            br.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return geciciListe;
     }
 
 }

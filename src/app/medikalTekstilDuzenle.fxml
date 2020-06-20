@@ -19,6 +19,6 @@
       <TextField fx:id="txtAdet" layoutX="69.0" layoutY="122.0" />
       <TextField fx:id="txtFiyat" layoutX="69.0" layoutY="157.0" />
       <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" onAction="#medikalTekstilDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
-      <Button layoutX="161.0" layoutY="242.0" mnemonicParsing="false" onAction="#ortopedikDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+      <Button layoutX="161.0" layoutY="242.0" mnemonicParsing="false" onAction="#medikalTekstilDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
    </children>
 </AnchorPane>

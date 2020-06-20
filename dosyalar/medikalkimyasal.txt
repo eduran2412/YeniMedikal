@@ -1,0 +1,5 @@
+1	sdfsdf	234	23	El Dezenfektan
+2	ese	234	234	Sabun
+3	sdfs	234	234	Ekg Jel
+5	sdfsdf	123123	23423	Medikal Kimyasal
+6	sdfs	234	234	Sabun
