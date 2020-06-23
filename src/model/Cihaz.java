@@ -15,6 +15,11 @@ abstract public class Cihaz {
         this.adet = adet;
     }
 
+    public Cihaz() {
+    }
+
+    
+    
     public int getId() {
         return id;
     }

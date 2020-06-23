@@ -5,7 +5,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.DosyaIslemleri;
 
-public class MedikalKimyasal extends Malzeme {
+public class MedikalKimyasal extends Malzeme implements IToplam {
 
     private String tur;
 
@@ -13,6 +13,11 @@ public class MedikalKimyasal extends Malzeme {
         super(id, isim, fiyat, adet);
         this.tur = tur;
     }
+
+    public MedikalKimyasal() {
+    }
+    
+    
 
     public String getTur() {
         return tur;
@@ -43,6 +48,22 @@ public class MedikalKimyasal extends Malzeme {
             ex.printStackTrace();
         }
         return geciciListe;
+    }
+
+    @Override
+    public int toplamKayit() {
+        int geciciSayac = 0;
+        try {
+            BufferedReader br = DosyaIslemleri.dosyayiCagir("medikalkimyasal");
+            String line;
+            while ((line = br.readLine()) != null) {
+                    geciciSayac++;  
+            }
+            br.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return geciciSayac;
     }
 
 }

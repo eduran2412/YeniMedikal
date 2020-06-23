@@ -15,6 +15,11 @@ abstract public class Malzeme {
         this.adet = adet;
     }
 
+    public Malzeme() {
+    }
+    
+    
+
     public int getId() {
         return id;
     }

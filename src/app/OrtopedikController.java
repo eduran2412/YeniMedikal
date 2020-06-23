@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -50,7 +51,20 @@ public class OrtopedikController implements Initializable {
     private ComboBox<String> cmbTur;
 
     ObservableList<String> tur = FXCollections.observableArrayList("Boyunluk", "Silikon Tabanlık", "Koltuk Değneği");
+    KoltukDegnegi koltukDegnegi = new KoltukDegnegi();
+    Boyunluk boyunluk = new Boyunluk();
+    SilikonTabanlik silikonTabanlik = new SilikonTabanlik();
+    Ortopedik ortopedik = new Ortopedik();
+            
     ObservableList<Ortopedik> ortopedikList = FXCollections.observableArrayList();
+    @FXML
+    private Label toplamKoltukDegnegi;
+    @FXML
+    private Label toplamBoyunluk;
+    @FXML
+    private Label toplamSilikonTabanık;
+    @FXML
+    private Label toplamKayit;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -65,6 +79,8 @@ public class OrtopedikController implements Initializable {
         tblTur.setCellValueFactory(new PropertyValueFactory<>("tur"));
         tblOrtopedik.setItems(Ortopedik.dosyadanOrtopedikGetir());
         tblOrtopedik.setItems(ortopedikList);
+        
+        toplamKayıtGuncelle();
 
     }
 
@@ -83,12 +99,17 @@ public class OrtopedikController implements Initializable {
             Ortopedik st = new SilikonTabanlik(id, isim, fiyat, adet, tur);
             ortopedikList.add(st);
             DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
-        } else {
+        }else if (tur.equals("Koltuk Değneği")) {
+            Ortopedik st = new SilikonTabanlik(id, isim, fiyat, adet, tur);
+            ortopedikList.add(st);
+            DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
+        } 
+        else {
             Ortopedik kd = new KoltukDegnegi(id, isim, fiyat, adet, "Ortopedik");
             ortopedikList.add(kd);
             DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
         }
-        
+         toplamKayıtGuncelle();
         temizle();
 
     }
@@ -99,6 +120,7 @@ public class OrtopedikController implements Initializable {
         tblOrtopedik.getItems().remove(seciliOrtopedik);
         ortopedikList.remove(seciliOrtopedik);
         DosyaIslemleri.dosyayaYaz(ortopedikList, "ortopedik");
+        toplamKayıtGuncelle();
     }
 
     @FXML
@@ -134,6 +156,14 @@ public class OrtopedikController implements Initializable {
         txtAdet.clear();
         txtFiyat.clear();
         cmbTur.setValue("Seçiniz");
+    }
+    
+    private void toplamKayıtGuncelle(){
+        toplamKoltukDegnegi.setText(String.valueOf(koltukDegnegi.toplamKayit()));
+        toplamBoyunluk.setText(String.valueOf(boyunluk.toplamKayit()));
+        toplamSilikonTabanık.setText(String.valueOf(silikonTabanlik.toplamKayit()));
+        toplamKayit.setText(String.valueOf(ortopedik.toplamKayit()));
+        
     }
 
 }

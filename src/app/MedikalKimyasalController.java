@@ -13,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -53,7 +54,19 @@ public class MedikalKimyasalController implements Initializable {
     private TableColumn<MedikalKimyasal, Integer> tblTur;
 
     ObservableList<String> tur = FXCollections.observableArrayList("El Dezenfektan", "Sabun", "Ekg Jel");
+    Dezenfektan d= new Dezenfektan();
+    Sabun sb = new Sabun();
+    EkgJel ej = new EkgJel();
+    MedikalKimyasal mk = new MedikalKimyasal();
     ObservableList<MedikalKimyasal> medikalKimyasalList = FXCollections.observableArrayList();
+    @FXML
+    private Label toplamDezenfektan;
+    @FXML
+    private Label toplamEkgJel;
+    @FXML
+    private Label toplamSabun;
+    @FXML
+    private Label toplamKayit;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -69,6 +82,7 @@ public class MedikalKimyasalController implements Initializable {
         tblTur.setCellValueFactory(new PropertyValueFactory<>("tur"));
         tblMedikalKimyasal.setItems(MedikalKimyasal.dosyadanMedikalTekstilGetir());
         tblMedikalKimyasal.setItems(medikalKimyasalList);
+        toplamKayıtGuncelle();
     }
 
     @FXML
@@ -82,7 +96,6 @@ public class MedikalKimyasalController implements Initializable {
             MedikalKimyasal dezenfektan = new Dezenfektan(id, isim, fiyat, adet, tur);
             medikalKimyasalList.add(dezenfektan);
             DosyaIslemleri.dosyayaYaz(medikalKimyasalList, "medikalkimyasal");
-
         } else if (tur.equals("Sabun")) {
             MedikalKimyasal sabun = new Sabun(id, isim, fiyat, adet, tur);
             medikalKimyasalList.add(sabun);
@@ -104,6 +117,7 @@ public class MedikalKimyasalController implements Initializable {
 
         alert.showAndWait();
         temizle();
+        toplamKayıtGuncelle();
 
     }
 
@@ -113,6 +127,7 @@ public class MedikalKimyasalController implements Initializable {
         tblMedikalKimyasal.getItems().remove(seciliMedikalKimyasal);
         medikalKimyasalList.remove(seciliMedikalKimyasal);
         DosyaIslemleri.dosyayaYaz(medikalKimyasalList, "medikalkimyasal");
+        toplamKayıtGuncelle();
     }
 
     @FXML
@@ -147,6 +162,14 @@ public class MedikalKimyasalController implements Initializable {
         txtAdet.clear();
         txtFiyat.clear();
         cmbTur.setValue("Seçiniz");
+    }
+    
+    private void toplamKayıtGuncelle(){
+        toplamDezenfektan.setText(String.valueOf(d.toplamKayit()));
+        toplamEkgJel.setText(String.valueOf(ej.toplamKayit()));
+        toplamSabun.setText(String.valueOf(sb.toplamKayit()));
+        toplamKayit.setText(String.valueOf(mk.toplamKayit()));
+        
     }
 
 }

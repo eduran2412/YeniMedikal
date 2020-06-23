@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -54,7 +55,19 @@ public class MedikalTekstilController implements Initializable {
     private TableColumn<MedikalTekstil, String> tblTur;
     
     ObservableList<String> tur = FXCollections.observableArrayList("Gözlük", "Koruyucu Maske", "Koruyucu Önlük");
+    Gozluk g = new Gozluk();
+    KoruyucuMaske km = new KoruyucuMaske();
+    KoruyucuOnluk ko = new KoruyucuOnluk();
+    MedikalTekstil mt = new MedikalTekstil();
     ObservableList<MedikalTekstil> medikalTekstilList = FXCollections.observableArrayList();
+    @FXML
+    private Label toplamGozluk;
+    @FXML
+    private Label toplamKoruyucuMaske;
+    @FXML
+    private Label toplamOnluk;
+    @FXML
+    private Label toplamKayit;
 
     
     @Override
@@ -70,6 +83,7 @@ public class MedikalTekstilController implements Initializable {
         tblTur.setCellValueFactory(new PropertyValueFactory<>("tur"));
         tblMedikalTekstil.setItems(MedikalTekstil.dosyadanMedikalTekstilGetir());
         tblMedikalTekstil.setItems(medikalTekstilList);
+        toplamKayıtGuncelle();
     }    
 
     @FXML
@@ -79,7 +93,7 @@ public class MedikalTekstilController implements Initializable {
         int fiyat = Integer.parseInt(txtFiyat.getText().trim());
         int adet = Integer.parseInt(txtAdet.getText().trim());
         String tur = cmbTur.getValue();
-        if(tur.equals("Gozluk")){
+        if(tur.equals("Gözlük")){
             MedikalTekstil gozluk = new Gozluk(id, isim, fiyat, adet, tur);
             medikalTekstilList.add(gozluk);
             DosyaIslemleri.dosyayaYaz(medikalTekstilList, "medikaltekstil");
@@ -96,6 +110,7 @@ public class MedikalTekstilController implements Initializable {
             medikalTekstilList.add(medikalTekstil);
             DosyaIslemleri.dosyayaYaz(medikalTekstilList, "medikaltekstil");
         }
+        toplamKayıtGuncelle();
         
         temizle();
     }
@@ -106,6 +121,7 @@ public class MedikalTekstilController implements Initializable {
         tblMedikalTekstil.getItems().remove(seciliMedikalTekstil);
         medikalTekstilList.remove(seciliMedikalTekstil);
         DosyaIslemleri.dosyayaYaz(medikalTekstilList, "medikaltekstil");
+        toplamKayıtGuncelle();
     }
 
     @FXML
@@ -141,5 +157,14 @@ public class MedikalTekstilController implements Initializable {
         txtFiyat.clear();
         cmbTur.setValue("Seçiniz");
     }
+    
+     private void toplamKayıtGuncelle(){
+        toplamGozluk.setText(String.valueOf(g.toplamKayit()));
+        toplamKoruyucuMaske.setText(String.valueOf(km.toplamKayit()));
+        toplamOnluk.setText(String.valueOf(ko.toplamKayit()));
+        toplamKayit.setText(String.valueOf(mt.toplamKayit()));
+        
+    }
+
     
 }

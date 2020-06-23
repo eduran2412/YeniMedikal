@@ -6,13 +6,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import util.DosyaIslemleri;
 
-public class Ortopedik extends Malzeme {
+public class Ortopedik extends Malzeme implements IToplam {
 
     private String tur;
 
     public Ortopedik(int id, String isim, int fiyat, int adet, String tur) {
         super(id, isim, fiyat, adet);
         this.tur = tur;
+    }
+
+    public Ortopedik() {
     }
 
     public String getTur() {
@@ -27,16 +30,16 @@ public class Ortopedik extends Malzeme {
     public String toString() {
         return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
     }
-    
-    public static ObservableList<Ortopedik> dosyadanOrtopedikGetir(){
-         ObservableList<Ortopedik> geciciListe = FXCollections.observableArrayList();
-         try {
+
+    public static ObservableList<Ortopedik> dosyadanOrtopedikGetir() {
+        ObservableList<Ortopedik> geciciListe = FXCollections.observableArrayList();
+        try {
             BufferedReader br = DosyaIslemleri.dosyayiCagir("ortopedik");
             String line;
             String[] satir;
             while ((line = br.readLine()) != null) {
                 satir = line.split("\t");
-                Ortopedik o = new Ortopedik(Integer.parseInt(satir[0]), satir[1],Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
+                Ortopedik o = new Ortopedik(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
                 geciciListe.add(o);
             }
             br.close();
@@ -44,6 +47,24 @@ public class Ortopedik extends Malzeme {
             ex.printStackTrace();
         }
         return geciciListe;
+    }
+
+    @Override
+    public int toplamKayit() {
+        int geciciSayac = 0;
+        try {
+            BufferedReader br = DosyaIslemleri.dosyayiCagir("ortopedik");
+            String line;
+
+            while ((line = br.readLine()) != null) {
+
+                geciciSayac++;
+            }
+            br.close();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+        return geciciSayac;
     }
 
 }

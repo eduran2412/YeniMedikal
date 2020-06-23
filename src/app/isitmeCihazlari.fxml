@@ -47,7 +47,7 @@
       <Button layoutX="326.0" layoutY="191.0" mnemonicParsing="false" onAction="#menuyeDon" prefHeight="33.0" prefWidth="82.0" text="Menü" />
       <ImageView fitHeight="150.0" fitWidth="235.0" layoutX="456.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="cmbTur" layoutX="128.0" layoutY="207.0" prefWidth="150.0" />
-      <TableView fx:id="tblIsitmeCihazlari" layoutX="-1.0" layoutY="259.0" prefHeight="340.0" prefWidth="860.0">
+      <TableView fx:id="tblIsitmeCihazlari" layoutX="-1.0" layoutY="299.0" prefHeight="300.0" prefWidth="860.0">
          <columns>
             <TableColumn fx:id="tblId" prefWidth="88.0" text="İd" />
             <TableColumn fx:id="tblIsim" prefWidth="248.0" text="İsim" />
@@ -56,5 +56,13 @@
             <TableColumn fx:id="tblTur" prefWidth="145.0" text="Tür" />
          </columns>
       </TableView>
+      <Label layoutX="24.0" layoutY="254.0" prefHeight="25.0" prefWidth="141.0" text="Toplam Kulak Dışı Cihaz:" />
+      <Label fx:id="toplamKulakDisi" layoutX="165.0" layoutY="258.0" text="Label" />
+      <Label layoutX="213.0" layoutY="258.0" prefHeight="17.0" prefWidth="141.0" text="Toplam Kulak İçi Cihaz" />
+      <Label fx:id="toplamKulakIci" layoutX="347.0" layoutY="258.0" text="Label" />
+      <Label layoutX="400.0" layoutY="258.0" text="Toplam Sarj Edilebilir" />
+      <Label fx:id="toplamSarjEdilebilir" layoutX="546.0" layoutY="258.0" text="Label" />
+      <Label layoutX="634.0" layoutY="258.0" text="Toplam Kayıt Sayısı" />
+      <Label fx:id="toplamKayit" layoutX="760.0" layoutY="258.0" text="Label" />
    </children>
 </AnchorPane>
