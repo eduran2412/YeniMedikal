@@ -40,8 +40,8 @@ public class DosyaIslemleri {
             System.out.println(e.getMessage());
         }
     }
-    
-    public static BufferedReader dosyayiCagir(String dosyaAdi){
+
+    public static BufferedReader dosyayiCagir(String dosyaAdi) {
         String anaYol = System.getProperty("user.dir") + "/" + klasor + "/" + dosyaAdi + ".txt";
         try {
             File f = new File(anaYol);
@@ -56,13 +56,11 @@ public class DosyaIslemleri {
             e.printStackTrace();
         }
         try {
-           
             return new BufferedReader(new FileReader(anaYol));
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-    
-    
+
 }

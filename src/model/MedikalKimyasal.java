@@ -16,8 +16,6 @@ public class MedikalKimyasal extends Malzeme implements IToplam {
 
     public MedikalKimyasal() {
     }
-    
-    
 
     public String getTur() {
         return tur;
@@ -40,8 +38,16 @@ public class MedikalKimyasal extends Malzeme implements IToplam {
             String[] satir;
             while ((line = br.readLine()) != null) {
                 satir = line.split("\t");
-                MedikalKimyasal mt = new MedikalKimyasal(Integer.parseInt(satir[0]), satir[1],Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
-                geciciListe.add(mt);
+                if(satir[4].equals("Sabun")){
+                    MedikalKimyasal sabun = new Sabun(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4], Double.parseDouble(satir[5]));
+                    geciciListe.add(sabun);
+                } else if(satir[4].equals("El Dezenfektan")){
+                    MedikalKimyasal dezenfektan = new Dezenfektan(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4], Double.parseDouble(satir[5]));
+                    geciciListe.add(dezenfektan);
+                } else {
+                    MedikalKimyasal mk = new MedikalKimyasal(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
+                    geciciListe.add(mk);
+                }
             }
             br.close();
         } catch (Exception ex) {

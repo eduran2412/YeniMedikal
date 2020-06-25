@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="273.0" style="-fx-background-color: #80b3b3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.IsitmeCihazlariDuzenleController">
+<AnchorPane id="AnchorPane" prefHeight="414.0" prefWidth="268.0" style="-fx-background-color: #80b3b3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.IsitmeCihazlariDuzenleController">
    <children>
       <Label layoutX="40.0" layoutY="53.0" text="id:" />
       <Label layoutX="32.0" layoutY="89.0" text=" isim:" />
@@ -18,7 +18,11 @@
       <TextField fx:id="txtIsim" layoutX="69.0" layoutY="85.0" />
       <TextField fx:id="txtAdet" layoutX="69.0" layoutY="122.0" />
       <TextField fx:id="txtFiyat" layoutX="69.0" layoutY="157.0" />
-      <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" onAction="#isitmeCihazlariDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
-      <Button layoutX="161.0" layoutY="242.0" mnemonicParsing="false" onAction="#isitmeCihazlariDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+      <Button layoutX="69.0" layoutY="350.0" mnemonicParsing="false" onAction="#isitmeCihazlariDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
+      <Button layoutX="160.0" layoutY="350.0" mnemonicParsing="false" onAction="#isitmeCihazlariDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+      <Label fx:id="lblSarjSuresi" layoutX="13.0" layoutY="248.0" prefHeight="17.0" prefWidth="67.0" text="sarj süresi" />
+      <TextField fx:id="txtSarjSuresi" layoutX="70.0" layoutY="244.0" />
+      <Label fx:id="lblPilAdeti" layoutX="19.0" layoutY="295.0" text="pil adeti" />
+      <TextField fx:id="txtPilAdet" layoutX="70.0" layoutY="291.0" />
    </children>
 </AnchorPane>

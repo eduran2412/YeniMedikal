@@ -1,4 +1,3 @@
-
 package app;
 
 import java.io.IOException;
@@ -25,10 +24,8 @@ import javafx.stage.Stage;
 import model.IsitmeCihazlari;
 import model.KulakDisiCihaz;
 import model.KulakIciCihaz;
-import model.MedikalKimyasal;
 import model.SarjEdilebilirCihaz;
 import util.DosyaIslemleri;
-
 
 public class IsitmeCihazlariController implements Initializable {
 
@@ -69,23 +66,60 @@ public class IsitmeCihazlariController implements Initializable {
     private Label toplamSarjEdilebilir;
     @FXML
     private Label toplamKayit;
+    @FXML
+    private TextField txtSarjSuresi;
+    @FXML
+    private Label lblSarjSuresi;
+    @FXML
+    private TextField txtPilAdeti;
+    @FXML
+    private Label lblPil;
+    @FXML
+    private TableColumn<IsitmeCihazlari, Integer> tblSarjSuresi;
+    @FXML
+    private TableColumn<IsitmeCihazlari, Integer> tblPilAdeti;
+    @FXML
+    private AnchorPane panelIsitmeCihazlari;
     
+
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbTur.setValue("Seçiniz");
         cmbTur.setItems(tur);
         
-        isitmeCihazlariList = IsitmeCihazlari.dosyadanIsitmeCihaziGetir();
+        lblPil.setVisible(false);
+        lblSarjSuresi.setVisible(false);
+        txtPilAdeti.setVisible(false);
+        txtSarjSuresi.setVisible(false);
+        txtSarjSuresi.setText("0");
+        txtPilAdeti.setText("0");
         
+        cmbTur.setOnAction(e->{
+            if(cmbTur.getValue().contains("Kulak İçi Cihaz") || cmbTur.getValue().contains("Kulak Dışı Cihaz")){
+            lblPil.setVisible(true);
+            txtPilAdeti.setVisible(true);
+        } else if(cmbTur.getValue().contains("Sarj Edilebilir Cihaz")){
+            lblSarjSuresi.setVisible(true);
+            txtSarjSuresi.setVisible(true);
+        }
+        });
+        
+        
+
+        isitmeCihazlariList = IsitmeCihazlari.dosyadanIsitmeCihaziGetir();
+
         tblId.setCellValueFactory(new PropertyValueFactory<>("id"));
         tblIsim.setCellValueFactory(new PropertyValueFactory<>("isim"));
         tblAdet.setCellValueFactory(new PropertyValueFactory<>("adet"));
         tblFiyat.setCellValueFactory(new PropertyValueFactory<>("fiyat"));
         tblTur.setCellValueFactory(new PropertyValueFactory<>("tur"));
+        tblPilAdeti.setCellValueFactory(new PropertyValueFactory<>("pilAdeti"));
+        tblSarjSuresi.setCellValueFactory(new PropertyValueFactory<>("sarjSuresi"));
         tblIsitmeCihazlari.setItems(IsitmeCihazlari.dosyadanIsitmeCihaziGetir());
         tblIsitmeCihazlari.setItems(isitmeCihazlariList);
         toplamKayıtGuncelle();
-    }    
+    }
 
     @FXML
     private void isitmeCihazlariEkle(ActionEvent event) {
@@ -93,17 +127,19 @@ public class IsitmeCihazlariController implements Initializable {
         String isim = txtIsim.getText().trim();
         int fiyat = Integer.parseInt(txtFiyat.getText().trim());
         int adet = Integer.parseInt(txtAdet.getText().trim());
+        int sarjSuresi = Integer.parseInt(txtSarjSuresi.getText().trim());
+        int pilAdeti = Integer.parseInt(txtPilAdeti.getText().trim());
         String tur = cmbTur.getValue();
         if (tur.equals("Kulak Dışı Cihaz")) {
-            IsitmeCihazlari kulakDisiCihaz = new KulakDisiCihaz(id, isim, fiyat, adet, tur);
+            IsitmeCihazlari kulakDisiCihaz = new KulakDisiCihaz(id, isim, fiyat, adet, tur, pilAdeti);
             isitmeCihazlariList.add(kulakDisiCihaz);
             DosyaIslemleri.dosyayaYaz(isitmeCihazlariList, "isitmecihazlari");
         } else if (tur.equals("Kulak İçi Cihaz")) {
-            IsitmeCihazlari kulakIciCihaz = new KulakIciCihaz(id, isim, fiyat, adet, tur);
+            IsitmeCihazlari kulakIciCihaz = new KulakIciCihaz(id, isim, fiyat, adet, tur, pilAdeti);
             isitmeCihazlariList.add(kulakIciCihaz);
             DosyaIslemleri.dosyayaYaz(isitmeCihazlariList, "isitmecihazlari");
         } else if (tur.equals("Sarj Edilebilir Cihaz")) {
-            IsitmeCihazlari sarjEdilebilir = new SarjEdilebilirCihaz(id, isim, fiyat, adet, tur);
+            IsitmeCihazlari sarjEdilebilir = new SarjEdilebilirCihaz(id, isim, fiyat, adet, tur, sarjSuresi);
             isitmeCihazlariList.add(sarjEdilebilir);
             DosyaIslemleri.dosyayaYaz(isitmeCihazlariList, "isitmecihazlari");
         } else {
@@ -154,23 +190,32 @@ public class IsitmeCihazlariController implements Initializable {
     }
 
     @FXML
-    private void menuyeDon(ActionEvent event) {
+    private void menuyeDon(ActionEvent event) throws IOException {
+         AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("navi.fxml"));
+         panelIsitmeCihazlari.getChildren().setAll(pane);
     }
-    
+
     private void temizle() {
         txtId.clear();
         txtIsim.clear();
         txtAdet.clear();
         txtFiyat.clear();
         cmbTur.setValue("Seçiniz");
+        txtPilAdeti.clear();
+        txtSarjSuresi.clear();
+        lblPil.setVisible(false);
+        lblSarjSuresi.setVisible(false);
+        txtPilAdeti.setVisible(false);
+        txtSarjSuresi.setVisible(false);
+        
     }
-    
-     private void toplamKayıtGuncelle(){
+
+    private void toplamKayıtGuncelle() {
         toplamKulakDisi.setText(String.valueOf(kd.toplamKayit()));
         toplamKulakIci.setText(String.valueOf(ki.toplamKayit()));
         toplamSarjEdilebilir.setText(String.valueOf(sarjEdilebilir.toplamKayit()));
         toplamKayit.setText(String.valueOf(ic.toplamKayit()));
-        
+
     }
-    
+
 }

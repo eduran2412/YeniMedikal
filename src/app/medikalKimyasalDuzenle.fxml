@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="318.0" prefWidth="273.0" style="-fx-background-color: #80b3b3;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MedikalKimyasalDuzenleController">
+<AnchorPane id="AnchorPane" prefHeight="424.0" prefWidth="273.0" style="-fx-background-color: #80b3b3;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MedikalKimyasalDuzenleController">
    <children>
       <Label layoutX="40.0" layoutY="53.0" text="id:" />
       <Label layoutX="32.0" layoutY="89.0" text=" isim:" />
@@ -18,7 +18,11 @@
       <TextField fx:id="txtIsim" layoutX="69.0" layoutY="85.0" />
       <TextField fx:id="txtAdet" layoutX="69.0" layoutY="122.0" />
       <TextField fx:id="txtFiyat" layoutX="69.0" layoutY="157.0" />
-      <Button layoutX="69.0" layoutY="242.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
-      <Button layoutX="161.0" layoutY="242.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+      <Button layoutX="69.0" layoutY="337.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenleKaydet" prefHeight="25.0" prefWidth="58.0" text="kaydet" />
+      <Button layoutX="161.0" layoutY="337.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenleIptal" prefHeight="25.0" prefWidth="58.0" text="iptal" />
+      <Label fx:id="lblAlkolMiktari" layoutX="8.0" layoutY="254.0" text="alkol miktarı" />
+      <Label fx:id="lblPhDegeri" layoutX="14.0" layoutY="293.0" text="PH degeri" />
+      <TextField fx:id="txtAlkolMikari" layoutX="80.0" layoutY="250.0" />
+      <TextField fx:id="txtPhDegeri" layoutX="80.0" layoutY="289.0" />
    </children>
 </AnchorPane>

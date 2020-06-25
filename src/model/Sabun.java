@@ -5,18 +5,19 @@ import util.DosyaIslemleri;
 
 public class Sabun extends MedikalKimyasal implements IToplam {
 
-    public Sabun(int id, String isim, int fiyat, int adet, String tur) {
+    private double phDegeri;
+
+    public Sabun(int id, String isim, int fiyat, int adet, String tur, double phDegeri) {
         super(id, isim, fiyat, adet, tur);
+        this.phDegeri = phDegeri;
     }
 
     public Sabun() {
     }
-    
-    
 
     @Override
     public String toString() {
-        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
+        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur()+ "\t" + getPhDegeri();
     }
 
     @Override
@@ -37,6 +38,14 @@ public class Sabun extends MedikalKimyasal implements IToplam {
             ex.printStackTrace();
         }
         return geciciSayac;
+    }
+
+    public double getPhDegeri() {
+        return phDegeri;
+    }
+
+    public void setPhDegeri(double phDegeri) {
+        this.phDegeri = phDegeri;
     }
 
 }

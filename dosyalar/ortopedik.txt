@@ -1,3 +1,0 @@
-2	Marka Olsun	250	3	Silikon Tabanlık
-3	Markasız Birşey	15	5	Boyunluk
-4	sdfsdf	123	123	Ortopedik

@@ -1,2 +1,0 @@
-2	dfs	234	234	Gözlük
-3	sfsf	234	234	Koruyucu Maske

@@ -24,7 +24,6 @@ import javafx.stage.Stage;
 import model.Dezenfektan;
 import model.EkgJel;
 import model.MedikalKimyasal;
-import model.MedikalTekstil;
 import model.Sabun;
 import util.DosyaIslemleri;
 
@@ -67,11 +66,42 @@ public class MedikalKimyasalController implements Initializable {
     private Label toplamSabun;
     @FXML
     private Label toplamKayit;
+    @FXML
+    private Label lblPhDegeri;
+    @FXML
+    private TextField txtPhDegeri;
+    @FXML
+    private Label lblAlkolMiktari;
+    @FXML
+    private TextField txtAlkolMiktari;
+    @FXML
+    private TableColumn<MedikalKimyasal, Double> tblAlkolOrani;
+    @FXML
+    private TableColumn<MedikalKimyasal, Double> tblPhDegeri;
+    @FXML
+    private AnchorPane panelMedikalKimyasal;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         cmbTur.setValue("Seçiniz");
         cmbTur.setItems(tur);
+        
+        lblAlkolMiktari.setVisible(false);
+        lblPhDegeri.setVisible(false);
+        txtAlkolMiktari.setVisible(false);
+        txtAlkolMiktari.setText("0.0");
+        txtPhDegeri.setText("0.0");
+        txtPhDegeri.setVisible(false);
+        
+        cmbTur.setOnAction(e->{
+        if(cmbTur.getValue().contains("El Dezenfektan")){
+            lblAlkolMiktari.setVisible(true);
+            txtAlkolMiktari.setVisible(true);
+        } else if(cmbTur.getValue().contains("Sabun")){
+            lblPhDegeri.setVisible(true);
+            txtPhDegeri.setVisible(true);
+        }
+        });
 
         medikalKimyasalList = MedikalKimyasal.dosyadanMedikalTekstilGetir();
 
@@ -80,6 +110,8 @@ public class MedikalKimyasalController implements Initializable {
         tblAdet.setCellValueFactory(new PropertyValueFactory<>("adet"));
         tblFiyat.setCellValueFactory(new PropertyValueFactory<>("fiyat"));
         tblTur.setCellValueFactory(new PropertyValueFactory<>("tur"));
+        tblAlkolOrani.setCellValueFactory(new PropertyValueFactory<>("alkolOrani"));
+        tblPhDegeri.setCellValueFactory(new PropertyValueFactory<>("phDegeri"));
         tblMedikalKimyasal.setItems(MedikalKimyasal.dosyadanMedikalTekstilGetir());
         tblMedikalKimyasal.setItems(medikalKimyasalList);
         toplamKayıtGuncelle();
@@ -91,13 +123,15 @@ public class MedikalKimyasalController implements Initializable {
         String isim = txtIsim.getText().trim();
         int fiyat = Integer.parseInt(txtFiyat.getText().trim());
         int adet = Integer.parseInt(txtAdet.getText().trim());
+        double phDegeri = Double.parseDouble(txtPhDegeri.getText().trim());
+        double alkolOrani = Double.parseDouble(txtAlkolMiktari.getText().trim());
         String tur = cmbTur.getValue();
         if (tur.equals("El Dezenfektan")) {
-            MedikalKimyasal dezenfektan = new Dezenfektan(id, isim, fiyat, adet, tur);
+            MedikalKimyasal dezenfektan = new Dezenfektan(id, isim, fiyat, adet, tur,alkolOrani);
             medikalKimyasalList.add(dezenfektan);
             DosyaIslemleri.dosyayaYaz(medikalKimyasalList, "medikalkimyasal");
         } else if (tur.equals("Sabun")) {
-            MedikalKimyasal sabun = new Sabun(id, isim, fiyat, adet, tur);
+            MedikalKimyasal sabun = new Sabun(id, isim, fiyat, adet, tur,phDegeri);
             medikalKimyasalList.add(sabun);
             DosyaIslemleri.dosyayaYaz(medikalKimyasalList, "medikalkimyasal");
         } else if (tur.equals("Ekg Jel")) {
@@ -153,7 +187,9 @@ public class MedikalKimyasalController implements Initializable {
     }
 
     @FXML
-    private void menuyeDon(ActionEvent event) {
+    private void menuyeDon(ActionEvent event) throws IOException {
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("naviYeni.fxml"));
+        panelMedikalKimyasal.getChildren().setAll(pane);
     }
 
     private void temizle() {
@@ -162,6 +198,14 @@ public class MedikalKimyasalController implements Initializable {
         txtAdet.clear();
         txtFiyat.clear();
         cmbTur.setValue("Seçiniz");
+        
+        txtAlkolMiktari.clear();
+        txtPhDegeri.clear();
+        lblAlkolMiktari.setVisible(false);
+        lblPhDegeri.setVisible(false);
+        txtAlkolMiktari.setVisible(false);
+        txtPhDegeri.setVisible(false);
+        
     }
     
     private void toplamKayıtGuncelle(){

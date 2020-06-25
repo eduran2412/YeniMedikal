@@ -1,2 +1,1 @@
-1	sdfsdf	234	23	El Dezenfektan
-5	sdfsdf	123123	23423	Medikal Kimyasal
+1	asd	23	23	Sabun	6.7

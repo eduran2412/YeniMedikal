@@ -1,0 +1,6 @@
+1	asdas	12	123	Kulak Dışı Cihaz	1
+2	dsdf	23	234	Sarj Edilebilir Cihaz	5
+3	sdf	123	12	Sarj Edilebilir Cihaz	5
+3	sdfsdf	123	123	Kulak Dışı Cihaz	0
+5	sfsd	123	123	Kulak Dışı Cihaz	5
+4	asd	123	123	Sarj Edilebilir Cihaz	12

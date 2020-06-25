@@ -38,8 +38,14 @@ public class IsitmeCihazlari extends Cihaz implements IToplam {
             String[] satir;
             while ((line = br.readLine()) != null) {
                 satir = line.split("\t");
-                IsitmeCihazlari mt = new IsitmeCihazlari(Integer.parseInt(satir[0]), satir[1],Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4]);
-                geciciListe.add(mt);
+                if(satir[4].equals("Kulak Dışı Cihaz") || satir[4].equals("Kulak İçi Cihaz")){
+                    IsitmeCihazlari kulakİcDis = new KulakDisiCihaz(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4], Integer.parseInt(satir[5]));
+                    geciciListe.add(kulakİcDis);
+                } else {
+                    IsitmeCihazlari sarjEdilebilir = new SarjEdilebilirCihaz(Integer.parseInt(satir[0]), satir[1], Integer.parseInt(satir[2]), Integer.parseInt(satir[3]), satir[4], Integer.parseInt(satir[5]));
+                    geciciListe.add(sarjEdilebilir);
+                }
+                
             }
             br.close();
         } catch (Exception ex) {
@@ -63,5 +69,6 @@ public class IsitmeCihazlari extends Cihaz implements IToplam {
         }
         return geciciSayac;
     }
-
+        
+    
 }

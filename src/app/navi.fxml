@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #313131;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.NaviController">
+<AnchorPane id="AnchorPane" fx:id="panel" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #313131;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.NaviController">
    <children>
       <Button layoutX="81.0" layoutY="290.0" mnemonicParsing="false" onAction="#naviMalzeme" prefHeight="67.0" prefWidth="184.0" style="-fx-border-color: RED;" text="Malzeme">
          <font>

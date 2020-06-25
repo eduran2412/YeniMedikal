@@ -12,20 +12,21 @@ import util.DosyaIslemleri;
  *
  * @author erend
  */
-public class KulakIciCihaz extends  IsitmeCihazlari implements IToplam{
-    
-    public KulakIciCihaz(int id, String isim, int fiyat, int adet, String tur) {
+public class KulakIciCihaz extends IsitmeCihazlari implements IToplam {
+
+    private int pilAdeti;
+
+    public KulakIciCihaz(int id, String isim, int fiyat, int adet, String tur, int pilAdeti) {
         super(id, isim, fiyat, adet, tur);
+        this.pilAdeti = pilAdeti;
     }
 
     public KulakIciCihaz() {
     }
-    
-    
-    
+
     @Override
     public String toString() {
-        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
+        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur() + "\t" + getPilAdeti();
     }
 
     @Override
@@ -37,7 +38,7 @@ public class KulakIciCihaz extends  IsitmeCihazlari implements IToplam{
             String[] satir;
             while ((line = br.readLine()) != null) {
                 satir = line.split("\t");
-                if(satir[4].equals("Kulak İçi Cihaz")){
+                if (satir[4].equals("Kulak İçi Cihaz")) {
                     geciciSayac++;
                 }
             }
@@ -47,5 +48,13 @@ public class KulakIciCihaz extends  IsitmeCihazlari implements IToplam{
         }
         return geciciSayac;
     }
-    
+
+    public int getPilAdeti() {
+        return pilAdeti;
+    }
+
+    public void setPilAdeti(int pilAdeti) {
+        this.pilAdeti = pilAdeti;
+    }
+
 }

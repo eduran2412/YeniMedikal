@@ -18,6 +18,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Gozluk;
@@ -68,6 +69,8 @@ public class MedikalTekstilController implements Initializable {
     private Label toplamOnluk;
     @FXML
     private Label toplamKayit;
+    @FXML
+    private AnchorPane panelMedikalTekstil;
 
     
     @Override
@@ -147,7 +150,9 @@ public class MedikalTekstilController implements Initializable {
     }
 
     @FXML
-    private void menuyeDon(ActionEvent event) {
+    private void menuyeDon(ActionEvent event) throws IOException {
+         AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("naviYeni.fxml"));
+        panelMedikalTekstil.getChildren().setAll(pane);
     }
     
     private void temizle(){

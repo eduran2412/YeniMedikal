@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="860.0" style="-fx-background-color: #929292;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MedikalKimyasalController">
+<AnchorPane fx:id="panelMedikalKimyasal" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="860.0" style="-fx-background-color: #929292;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MedikalKimyasalController">
    <children>
       <Label layoutX="78.0" layoutY="50.0" prefHeight="17.0" prefWidth="38.0" text="İd:">
          <font>
@@ -41,28 +41,42 @@
       <TextField fx:id="txtIsim" layoutX="128.0" layoutY="95.0" />
       <TextField fx:id="txtAdet" layoutX="128.0" layoutY="132.0" />
       <TextField fx:id="txtFiyat" layoutX="128.0" layoutY="170.0" />
-      <Button layoutX="326.0" layoutY="51.0" mnemonicParsing="false" onAction="#medikalKimyasalEkle" prefHeight="27.0" prefWidth="82.0" text="Ekle" />
-      <Button layoutX="326.0" layoutY="94.0" mnemonicParsing="false" onAction="#medikalKimyasalSil" prefHeight="25.0" prefWidth="82.0" text="Sil" />
-      <Button layoutX="326.0" layoutY="132.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenle" prefHeight="25.0" prefWidth="82.0" text="Düzenle" />
-      <Button layoutX="326.0" layoutY="191.0" mnemonicParsing="false" onAction="#menuyeDon" prefHeight="33.0" prefWidth="82.0" text="Menü" />
-      <ImageView fitHeight="150.0" fitWidth="235.0" layoutX="456.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+      <Button layoutX="468.0" layoutY="50.0" mnemonicParsing="false" onAction="#medikalKimyasalEkle" prefHeight="27.0" prefWidth="82.0" text="Ekle" />
+      <Button layoutX="468.0" layoutY="95.0" mnemonicParsing="false" onAction="#medikalKimyasalSil" prefHeight="25.0" prefWidth="82.0" text="Sil" />
+      <Button layoutX="468.0" layoutY="132.0" mnemonicParsing="false" onAction="#medikalKimyasalDuzenle" prefHeight="25.0" prefWidth="82.0" text="Düzenle" />
+      <Button layoutX="468.0" layoutY="179.0" mnemonicParsing="false" onAction="#menuyeDon" prefHeight="33.0" prefWidth="82.0" text="Menü" />
+      <ImageView fitHeight="150.0" fitWidth="235.0" layoutX="597.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
       <ComboBox fx:id="cmbTur" layoutX="128.0" layoutY="207.0" prefWidth="150.0" />
-      <TableView fx:id="tblMedikalKimyasal" layoutX="-3.0" layoutY="296.0" prefHeight="304.0" prefWidth="866.0">
+      <TableView fx:id="tblMedikalKimyasal" layoutX="-3.0" layoutY="333.0" prefHeight="267.0" prefWidth="866.0">
         <columns>
           <TableColumn fx:id="tblId" prefWidth="88.0" text="İd" />
-          <TableColumn fx:id="tblIsim" prefWidth="248.0" text="İsim" />
-            <TableColumn fx:id="tblAdet" prefWidth="208.0" text="Adet" />
-            <TableColumn fx:id="tblFiyat" prefWidth="176.0" text="Fiyat" />
-            <TableColumn fx:id="tblTur" prefWidth="145.0" text="Tür" />
+          <TableColumn fx:id="tblIsim" prefWidth="166.0" text="İsim" />
+            <TableColumn fx:id="tblAdet" prefWidth="121.0" text="Adet" />
+            <TableColumn fx:id="tblFiyat" prefWidth="89.0" text="Fiyat" />
+            <TableColumn fx:id="tblTur" prefWidth="149.0" text="Tür" />
+            <TableColumn fx:id="tblAlkolOrani" prefWidth="115.0" text="Alkol Oranı" />
+            <TableColumn fx:id="tblPhDegeri" prefWidth="137.0" text="PH Değeri" />
         </columns>
       </TableView>
-      <Label layoutX="34.0" layoutY="264.0" prefHeight="25.0" prefWidth="141.0" text="Toplam Dezenfektan:" />
-      <Label fx:id="toplamDezenfektan" layoutX="161.0" layoutY="268.0" text="Label" />
-      <Label layoutX="203.0" layoutY="268.0" prefHeight="17.0" prefWidth="121.0" text="Toplam Ekg Jel:" />
-      <Label fx:id="toplamEkgJel" layoutX="298.0" layoutY="268.0" text="Label" />
-      <Label layoutX="353.0" layoutY="268.0" text="Toplam Sabun" />
-      <Label fx:id="toplamSabun" layoutX="446.0" layoutY="268.0" prefHeight="17.0" prefWidth="37.0" text="Label" />
-      <Label layoutX="514.0" layoutY="268.0" text="Toplam Kayıt Sayısı:" />
-      <Label fx:id="toplamKayit" layoutX="638.0" layoutY="268.0" text="Label" />
+      <Label layoutX="34.0" layoutY="300.0" prefHeight="25.0" prefWidth="141.0" text="Toplam Dezenfektan:" />
+      <Label fx:id="toplamDezenfektan" layoutX="161.0" layoutY="304.0" text="Label" />
+      <Label layoutX="203.0" layoutY="304.0" prefHeight="17.0" prefWidth="121.0" text="Toplam Ekg Jel:" />
+      <Label fx:id="toplamEkgJel" layoutX="298.0" layoutY="304.0" text="Label" />
+      <Label layoutX="348.0" layoutY="304.0" text="Toplam Sabun" />
+      <Label fx:id="toplamSabun" layoutX="441.0" layoutY="304.0" prefHeight="17.0" prefWidth="37.0" text="Label" />
+      <Label layoutX="509.0" layoutY="304.0" text="Toplam Kayıt Sayısı:" />
+      <Label fx:id="toplamKayit" layoutX="633.0" layoutY="304.0" text="Label" />
+      <Label fx:id="lblPhDegeri" layoutX="42.0" layoutY="255.0" prefHeight="27.0" prefWidth="93.0" text="Ph Değeri">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPhDegeri" layoutX="129.0" layoutY="256.0" />
+      <Label fx:id="lblAlkolMiktari" layoutX="316.0" layoutY="37.0" prefHeight="27.0" prefWidth="114.0" text="Alkol Miktarı">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAlkolMiktari" layoutX="298.0" layoutY="65.0" />
    </children>
 </AnchorPane>

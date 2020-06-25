@@ -4,9 +4,12 @@ import java.io.BufferedReader;
 import util.DosyaIslemleri;
 
 public class Dezenfektan extends MedikalKimyasal implements IToplam {
+    
+    private double alkolOrani;
 
-    public Dezenfektan(int id, String isim, int fiyat, int adet, String tur) {
+    public Dezenfektan(int id, String isim, int fiyat, int adet, String tur,double alkolOrani) {
         super(id, isim, fiyat, adet, tur);
+        this.alkolOrani = alkolOrani;
     }
 
     public Dezenfektan() {
@@ -15,7 +18,7 @@ public class Dezenfektan extends MedikalKimyasal implements IToplam {
     
     @Override
     public String toString() {
-        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur();
+        return getId() + "\t" + getIsim() + "\t" + getFiyat() + "\t" + getAdet() + "\t" + getTur()+ "\t" + getAlkolOrani();
     }
     
     @Override
@@ -37,5 +40,15 @@ public class Dezenfektan extends MedikalKimyasal implements IToplam {
         }
         return geciciSayac;
     }
+
+    public double getAlkolOrani() {
+        return alkolOrani;
+    }
+
+    public void setAlkolOrani(double alkolOrani) {
+        this.alkolOrani = alkolOrani;
+    }
+    
+    
 
 }

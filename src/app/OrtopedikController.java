@@ -17,6 +17,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.Boyunluk;
@@ -65,6 +66,8 @@ public class OrtopedikController implements Initializable {
     private Label toplamSilikonTabanık;
     @FXML
     private Label toplamKayit;
+    @FXML
+    private AnchorPane panelOrtopedik;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -147,7 +150,9 @@ public class OrtopedikController implements Initializable {
     }
 
     @FXML
-    private void menuyeDon(ActionEvent event) {
+    private void menuyeDon(ActionEvent event) throws IOException {
+        AnchorPane pane = (AnchorPane) FXMLLoader.load(getClass().getResource("naviYeni.fxml"));
+        panelOrtopedik.getChildren().setAll(pane);
     }
     
     private void temizle(){
